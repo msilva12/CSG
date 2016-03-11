@@ -1,0 +1,16 @@
+%% Read COIN DATA
+% By: Murilo Silva
+% Created: 3/10/2016
+clear,clc,clf,close all
+
+%% Load coin_data
+load('coin_data_original.mat')
+
+%% 
+n = length(coindata);
+for k = 1:n
+    c = coindata{k,1};
+   if strcmp(c,'')
+       coindata{k,1}=coindata{k-1,1};
+   end
+end
