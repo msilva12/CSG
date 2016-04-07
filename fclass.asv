@@ -14,8 +14,7 @@ if(sum(h))
     end
     D = setdiff(C,R(:,3:4));
 else
-    R = 0;
-    D = C;
+    
 end
 end
 

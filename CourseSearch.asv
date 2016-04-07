@@ -62,4 +62,6 @@ clear N
 
 %% 
 
-end
+[C,ia,ic] = unique(F(:,{'Subject','CatalogNumber','Component'}));
+
+F(ia
