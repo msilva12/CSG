@@ -58,10 +58,66 @@ if(height(N))
     end
 end
 
-clear N
+for h = 1:height(C)
+    k{h,:} = find(ismember(F(:,{'Subject','CatalogNumber'}),C(h,:)));
+end
+
+for h = 1:length(k)
+    K{:,1,h} = F(k{h},:);
+end
+
+clear N T C F
 
 %% 
 
-for h = 1:height(C)
-    k{h,:} = find(ismember(F(:,{'Subject','CatalogNumber'}),C(h,:)));
+uc{length(K(:,:))} = 0;
+
+for h = 1:length(K(:,:))
+    uc{h} = unique(K{:,1,h}(:,{'Component'}));
+    H{height(uc{h}),h} = 0;
+    for p = 1:height(uc{h})
+       H{p,h} = find(ismember(K{:,1,h}(:,{'Component'}),uc{h}(p,:)));
+       P{h,p} = K{:,1,h}(H{p,h},:);
+    end
+end
+
+clear h k K p uc H
+
+%%
+
+% maximum number of components
+n = length(P(1,:));
+
+% number of classes
+c = length(P(:,1));
+
+% number of maximum options for each class
+a(c) = 0;
+
+% number of components in each class
+d(c) = 0;
+
+for h = 1:c
+    for k = 1:n
+        if(~isequal(P{h,k},[]))
+            b = height(P{h,k});
+            d(h) = d(h)+1;
+            if(b>a(h))
+                a(h)=b;
+            end
+        end
+    end
+end
+
+% amount of different possible combinations
+b = prod(a);
+
+H{c,b} = 0;
+
+for h = 1:c
+    for k = 1:(b/a(h))
+        if(~isequal(P{h,k},[]))
+            
+        end
+    end
 end
