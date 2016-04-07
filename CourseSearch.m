@@ -62,4 +62,6 @@ clear N
 
 %% 
 
+for h = 1:height(C)
+    k{h,:} = find(ismember(F(:,{'Subject','CatalogNumber'}),C(h,:)));
 end
