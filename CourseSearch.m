@@ -14,13 +14,16 @@ load('coinTable.mat')
 n = -1;
 while(n<0)
     n = input('How many classes would you like to search? ');
-    if(n==0)
+    if(isempty(n))
+        disp('Please enter a number greater than 0, or enter 0 to exit the program');
+        n=-1;
+    elseif(n==0)
         return
     elseif(n<0)
         disp('Please enter a number greater than 0, or enter 0 to exit the program');
     elseif(n>8)
         disp('Be realistic. You will not take more than 8 classes.');
-        n=-1;
+        n=-1;        
     else
         k=1;
     end
@@ -114,10 +117,9 @@ b = prod(a);
 
 H{c,b} = 0;
 
-for h = 1:c
-    for k = 1:(b/a(h))
-        if(~isequal(P{h,k},[]))
-            
-        end
-    end
+t = ones([1 b]);
+
+for h = 1:b
+    
 end
+
