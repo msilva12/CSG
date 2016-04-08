@@ -80,7 +80,7 @@ for h = 1:length(K(:,:))
     H{height(uc{h}),h} = 0;
     for p = 1:height(uc{h})
        H{p,h} = find(ismember(K{:,1,h}(:,{'Component'}),uc{h}(p,:)));
-       P{h,p} = K{:,1,h}(H{p,h},:);
+       P{p,h} = K{:,1,h}(H{p,h},:);
     end
 end
 
@@ -98,13 +98,17 @@ c = length(P(:,1));
 a(c) = 0;
 
 % number of components in each class
-d(c) = 0;
+d = zeros(1,c);
+
+% vector that will contain the amounts of components in each class
+f = zeros(1,c);
 
 for h = 1:c
     for k = 1:n
-        if(~isequal(P{h,k},[]))
-            b = height(P{h,k});
+        if(~isequal(P{k,h},[]))
+            b = height(P{k,h});
             d(h) = d(h)+1;
+            f(h) = f(h)+1;
             if(b>a(h))
                 a(h)=b;
             end
@@ -115,7 +119,7 @@ end
 % amount of different possible combinations
 b = prod(a);
 
-H{c,b} = 0;
+H = cell(b,c);
 
 t = ones([1 b]);
 
