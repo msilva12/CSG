@@ -123,7 +123,13 @@ H = cell(b,c);
 
 t = ones([1 b]);
 
-for h = 1:b
-    
+for h = 1:c
+    for m = 1:f(h)
+        for t = 1:height(P{m,h}):b
+            for g = 1:height(P{m,h})
+                H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
+            end
+        end
+    end
 end
 
