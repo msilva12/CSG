@@ -124,6 +124,7 @@ H = cell(b,c);
 t = ones([1 b]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 for h = 1:c
     for m = 1:f(h)
         if(~isequal(P{m,h},[]))
@@ -134,6 +135,10 @@ for h = 1:c
             end
         end
     end
+=======
+for h = 1:b
+    
+>>>>>>> parent of dbfdb90... Combination matrix H is done. Neet to check if it is correct!
 =======
 for h = 1:b
     
