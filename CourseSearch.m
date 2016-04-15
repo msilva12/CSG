@@ -105,8 +105,8 @@ f = zeros(1,c);
 
 for h = 1:c
     for k = 1:n
-        if(~isequal(P{k,h},[]))
-            b = height(P{k,h});
+        if(~isequal(P{h,k},[]))
+            b = height(P{h,k});
             d(h) = d(h)+1;
             f(h) = f(h)+1;
             if(b>a(h))
@@ -125,9 +125,11 @@ t = ones([1 b]);
 
 for h = 1:c
     for m = 1:f(h)
-        for t = 1:height(P{m,h}):b
-            for g = 1:height(P{m,h})
-                H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
+        if(~isequal(P{m,h},[]))
+            for t = 1:height(P{m,h}):b
+                for g = 1:height(P{m,h})
+                    H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
+                end
             end
         end
     end
