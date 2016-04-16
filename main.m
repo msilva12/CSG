@@ -51,7 +51,7 @@ clear c e k lev n s sub ui
 clc
 
 % [F N] = fclass(C,T);
-[P, F, N] = CourseSearch(T,C);
+[P, N] = CourseSearch(T,C);
 
 if(height(N))
     disp('The following courses were not found:')

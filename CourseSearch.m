@@ -1,5 +1,9 @@
-function [P, F, N] = CourseSearch(T,C)
-
+function [P, N] = CourseSearch(T,C)
+%%COURSESEARCH has input table C and T, where C is what we search in T.
+% By: Murilo Silva
+% Created: 4/16/2016
+% Purpose is to return table T variable which contains all the
+% classes and their sections.
 h = ismember(T(:,3:4),C);
 x = 1;
 
@@ -21,7 +25,7 @@ g = k;
 for h = 1:height(C)
     k{h} = find(ismember(F{:,{'Subject'}},C{h,{'Subject'}}));
     g{h} = find(ismember(F{:,{'CatalogNumber'}},C{h,{'CatalogNumber'}}));
-    k{h} = g{h}(find(ismember(k{h},g{h})));
+    k{h} = k{h}(find(ismember(k{h},g{h})));
 end
 
 for h = 1:length(k)
