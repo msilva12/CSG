@@ -50,86 +50,91 @@ clear c e k lev n s sub ui
 %% Search Courses in C
 clc
 
-[F N] = fclass(C,T);
+% [F N] = fclass(C,T);
+[P, F, N] = CourseSearch(T,C);
 
 if(height(N))
     disp('The following courses were not found:')
-    N
+    fprintf('%s %s\n\n',table2array(N{:,1}),table2array(N{:,2}))
     ui = input('Enter 1 to continue anyways or 0 to start over: ');
     if(ui==0)
-        CourseSearch
+        main
+        return
     end
 end
 
-for h = 1:height(C)
-    k{h,:} = find(ismember(F(:,{'Subject','CatalogNumber'}),C(h,:)));
-end
 
-for h = 1:length(k)
-    K{:,1,h} = F(k{h},:);
-end
 
-clear N T C F
-
-%% 
-
-uc{length(K(:,:))} = 0;
-
-for h = 1:length(K(:,:))
-    uc{h} = unique(K{:,1,h}(:,{'Component'}));
-    H{height(uc{h}),h} = 0;
-    for p = 1:height(uc{h})
-       H{p,h} = find(ismember(K{:,1,h}(:,{'Component'}),uc{h}(p,:)));
-       P{p,h} = K{:,1,h}(H{p,h},:);
-    end
-end
-
-clear h k K p uc H
+% for h = 1:height(C)
+%     k{h,:} = find(ismember(F(:,{'Subject','CatalogNumber'}),C(h,:)));
+% end
+% 
+% for h = 1:length(k)
+%     K{:,1,h} = F(k{h},:);
+% end
+% 
+% clear N T C F
+% 
+% %% 
+% 
+% uc{length(K(:,:))} = 0;
+% 
+% for h = 1:length(K(:,:))
+%     uc{h} = unique(K{:,1,h}(:,{'Component'}));
+%     H{height(uc{h}),h} = 0;
+%     for p = 1:height(uc{h})
+%         H{p,h} = find(ismember(K{:,1,h}(:,{'Component'}),uc{h}(p,:)));
+%         P{p,h} = K{:,1,h}(H{p,h},:);
+%     end
+% end
+% 
+% clear h k K p uc H
 
 %%
-
-% maximum number of components
-n = length(P(1,:));
-
-% number of classes
-c = length(P(:,1));
-
-% number of maximum options for each class
-a(c) = 0;
-
-% number of components in each class
-d = zeros(1,c);
-
-% vector that will contain the amounts of components in each class
-f = zeros(1,c);
-
-for h = 1:c
-    for k = 1:n
-        if(~isequal(P{k,h},[]))
-            b = height(P{k,h});
-            d(h) = d(h)+1;
-            f(h) = f(h)+1;
-            if(b>a(h))
-                a(h)=b;
-            end
-        end
-    end
-end
-
-% amount of different possible combinations
-b = prod(a);
-
-H = cell(b,c);
-
-t = ones([1 b]);
-
-for h = 1:c
-    for m = 1:f(h)
-        for t = 1:height(P{m,h}):b
-            for g = 1:height(P{m,h})
-                H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
-            end
-        end
-    end
-end
+% %%
+% 
+% % maximum number of components
+% n = length(P(1,:));
+% 
+% % number of classes
+% c = length(P(:,1));
+% 
+% % number of maximum options for each class
+% a(c) = 0;
+% 
+% % number of components in each class
+% d = zeros(1,c);
+% 
+% % vector that will contain the amounts of components in each class
+% f = zeros(1,c);
+% 
+% for h = 1:c
+%     for k = 1:n
+%         if(~isequal(P{k,h},[]))
+%             b = height(P{k,h});
+%             d(h) = d(h)+1;
+%             f(h) = f(h)+1;
+%             if(b>a(h))
+%                 a(h)=b;
+%             end
+%         end
+%     end
+% end
+% 
+% % amount of different possible combinations
+% b = prod(a);
+% 
+% H = cell(b,c);
+% 
+% t = ones([1 b]);
+% 
+% for h = 1:c
+%     for m = 1:f(h)
+%         for t = 1:height(P{m,h}):b
+%             for g = 1:height(P{m,h})
+%                 H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
+%             end
+%         end
+%     end
+% end
 

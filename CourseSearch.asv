@@ -17,23 +17,19 @@ else
 end
 
 k = {zeros([1 height(C)])};
-g = k;
 for h = 1:height(C)
     k{h} = find(ismember(F{:,{'Subject'}},C{h,{'Subject'}}));
-    g{h} = find(ismember(F{:,{'CatalogNumber'}},C{h,{'CatalogNumber'}}));
-    k{h} = g{h}(find(ismember(k{h},g{h})));
+    k{h} = find(ismember(F{k{h},{'CatalogNumber'}},C{h,{'CatalogNumber'}}))
 end
 
 for h = 1:length(k)
-    K{:,1,h} = F(k{h},:);
+    K{:,1,h} = F{k{h},:};
 end
 
-uc = cell([1 length(K(:,:))]);
+uc{length(K(:,:))} = 0;
 
-% h is index for different classes
 for h = 1:length(K(:,:))
-    
-    uc{h} = unique(K{:,:,h}(:,{'Component'}));
+    uc{h} = unique(K{:,1,h}(:,{'Component'}));
     H{height(uc{h}),h} = 0;
     for p = 1:height(uc{h})
         H{p,h} = find(ismember(K{:,1,h}(:,{'Component'}),uc{h}(p,:)));
