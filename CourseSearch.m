@@ -105,8 +105,8 @@ f = zeros(1,c);
 
 for h = 1:c
     for k = 1:n
-        if(~isequal(P{h,k},[]))
-            b = height(P{h,k});
+        if(~isequal(P{k,h},[]))
+            b = height(P{k,h});
             d(h) = d(h)+1;
             f(h) = f(h)+1;
             if(b>a(h))
@@ -123,25 +123,13 @@ H = cell(b,c);
 
 t = ones([1 b]);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 for h = 1:c
     for m = 1:f(h)
-        if(~isequal(P{m,h},[]))
-            for t = 1:height(P{m,h}):b
-                for g = 1:height(P{m,h})
-                    H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
-                end
+        for t = 1:height(P{m,h}):b
+            for g = 1:height(P{m,h})
+                H{t+g-1,h} =  [H{t+g-1,h};P{m,h}(g,:)];
             end
         end
     end
-=======
-for h = 1:b
-    
->>>>>>> parent of dbfdb90... Combination matrix H is done. Neet to check if it is correct!
-=======
-for h = 1:b
-    
->>>>>>> parent of dbfdb90... Combination matrix H is done. Neet to check if it is correct!
 end
 
