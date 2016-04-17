@@ -31,7 +31,7 @@ T(:,{'AcademicOrganization'}) = B2;
 
 % This code will remove all spaces from the following columns. This is done
 % through regex to improve speed.
-A = {'Subject','CatalogNumber','Section','ClassNumber','EnrollmentCapacity','TotalEnrolled','SeatsAvailable','EnrollmentStatus','Component','Mon','Tue','Wed','Thu','Fri','Sat','Sun','StartTime','EndTime','Location','WaitlistCap','WaitlistTotal'};
+A = {'Subject','CatalogNumber','Section','ClassNumber','EnrollmentCapacity','TotalEnrolled','SeatsAvailable','EnrollmentStatus','Component','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Location','WaitlistCap','WaitlistTotal'};
 S = table2array(T(:,A));
 R = regexprep(S,'[^\w'']','');
 T(:,A) = R;
