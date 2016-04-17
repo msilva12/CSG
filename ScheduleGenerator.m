@@ -52,9 +52,17 @@ for t = 1:Comb
                     d2 = datetime(S{t}{tbf(n),{'EndTime'}},'InputFormat','h:mm a');
                     if(isbetween(d1,tLow,tHigh)||isbetween(d2,tLow,tHigh))
                         ntc(t) = 0;
+                        break
                     end
+                    
+                end
+                if(~ntc(t))
+                    break
                 end
             end
+        end
+        if(~ntc(t))
+            break
         end
     end
 end
