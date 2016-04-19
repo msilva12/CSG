@@ -63,6 +63,9 @@ if(height(N))
     end
 end
 
+%% Schedule Generator
 S = ScheduleGenerator(P);
 
+
+%% Export
 % ScheduleExport(S)
