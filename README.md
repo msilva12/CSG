@@ -12,10 +12,8 @@ from the course listing and create an array of possible schedules.
 
 3 Sort the classes found in a two dimensional array.
 
-####Things that still need work:
+4 Create all combinational matrices.
 
-• Create all the possible combinations matrix.
+5 Filter time conflicting combinations.
 
-• Check for overlapping classes in each combination, if overlap occurs discard combination.
-
-• Display possible combinations in a calendar style.
+6 Export all non-conflicting combinations to excel in an agent view.
