@@ -11,9 +11,15 @@ T = DatabaseRead();
 % Ask users how many classes would they would like to include in their
 % schedule.
 
+% Initialize loop breaker.
 n = -1;
+
+% Start loop asking user for number of classes
 while(n<0)
+    % Get integer number of classes
     n = input('How many classes would you like to search? ');
+    
+    % If no number is entered display error
     if(isempty(n))
         disp('Please enter a number greater than 0, or enter 0 to exit the program');
         n=-1;
@@ -68,4 +74,4 @@ S = ScheduleGenerator(P);
 
 
 %% Export
-% ScheduleExport(S)
+ScheduleExport(S,'Test')
